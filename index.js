@@ -71,10 +71,7 @@ function Kazananlar(arr, callback) {
 
   return winners;
 }
-/*  win["Home Team Goals"] > win["Away Team Goals"]
-      ? win["Home Team Name"]
-      : win["Away Team Name"]
-  ); */
+
 console.log("aaa", Kazananlar(fifaData, Finaller));
 /*  Görev 5: 
 	Bir higher-order fonksiyonu olan YillaraGoreKazananlar isimli fonksiyona aşağıdakileri uygulayın:
