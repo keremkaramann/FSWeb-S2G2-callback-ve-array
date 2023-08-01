@@ -7,20 +7,24 @@ const { fifaData } = require("./fifa.js");
 
 //(a) 2014 Dünya kupası Finali Evsahibi takım ismi (dizide "Home Team Name" anahtarı)
 
-const homeTeams = fifaData.map((e) => e["Home Team Name"]);
-//console.log(homeTeams);
+const final2014 = fifaData.find(
+  (item) => item.Year === 2014 && item.Stage === "Final"
+);
+//console.log(final2014["Home Team Name"]);
 
 //(b) 2014 Dünya kupası Finali Deplasman takım ismi  (dizide "Away Team Name" anahtarı)
-const awayTeams = fifaData.map((e) => e["Away Team Name"]);
-//console.log(awayTeams);
+//console.log(final2014["Away Team Name"]);
 //(c) 2014 Dünya kupası finali Ev sahibi takım golleri (dizide "Home Team Goals" anahtarı)
-const homeGoals = fifaData.map((goal) => goal["Home Team Goals"]);
-//console.log(homeGoals);
+//console.log(final2014["Home Team Goals"]);
 //(d)2014 Dünya kupası finali Deplasman takım golleri  (dizide "Away Team Goals" anahtarı)
-const awayGoals = fifaData.map((goal) => goal["Away Team Goals"]);
-//console.log(awayGoals);
+//console.log(final2014["Away Team Goals"]);
 //(e) 2014 Dünya kupası finali kazananı*/
-
+let winner = "";
+if (final2014["Home Team Goals"] > final2014["Away Team Goals"]) {
+  winner = final2014["Home Team Name"];
+} else {
+  winner = final2014["Away Team Name"];
+}
 /*  Görev 2: 
 	Finaller adlı fonksiyonu kullanarak aşağıdakileri uygulayın:
 	1. Bir dizi(array) olan Fifa datasını fonksiyonun birinci parametresi olarak alacak
@@ -113,11 +117,11 @@ function YillaraGoreKazananlar(
 	💡 İPUCU: .reduce, .toFixed (dizilim(syntax) için MDN'ye bakın) kullan, ve bunu 2 adımda yapın) 
 	
 */
-
-function OrtalamaGolSayisi(callback) {
+function OrtalamaGolSayisi(callback, arr) {
   /* kodlar buraya */
+  const ortalama = arr.map((e) => console.log(e["Home Team Goals"]));
 }
-
+console.log(OrtalamaGolSayisi(fifaData, Finaller(fifaData)));
 /// EKSTRA ÇALIŞMALAR ///
 
 /*  BONUS 1:  
