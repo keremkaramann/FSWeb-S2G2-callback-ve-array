@@ -173,23 +173,64 @@ function UlkelerinKazanmaSayilari(data) {
   }
   return sonuc;
 }
-console.log(UlkelerinKazanmaSayilari(Kazanan(fifaData, Finaller)));
+//console.log(UlkelerinKazanmaSayilari(Kazanan(fifaData, Finaller)));
 
 /*  BONUS 2:  
 EnCokGolAtan() isminde bir fonksiyon yazın, `data` yı parametre olarak alsın ve 
 Dünya kupası finallerinde en çok gol atan takımı döndürsün */
-//finannler() sadece golleri ekle
-function EnCokGolAtan(/* kodlar buraya */) {
+
+function EnCokGolAtan(Finaller, arr) {
   /* kodlar buraya */
+  let finaller = Finaller(arr);
+  let teams = {};
+  finaller.forEach((item) => {
+    if (teams[item["Home Team Initials"]] == undefined) {
+      teams[item["Home Team Initials"]] = item["Home Team Goals"];
+    } else {
+      teams[item["Home Team Initials"]] += item["Home Team Goals"];
+    }
+    if (teams[item["Away Team Initials"]] == undefined) {
+      teams[item["Away Team Initials"]] = item["Away Team Goals"];
+    } else {
+      teams[item["Away Team Initials"]] += item["Away Team Goals"];
+    }
+  });
+  return teams;
 }
+//console.log(EnCokGolAtan(Finaller, fifaData));
 
 /*  BONUS 3: 
 EnKotuDefans() adında bir fonksiyon yazın, `data` yı parametre olarak alsın ve
  Dünya kupasında finallerinde en çok golü yiyen takımı döndürsün*/
 
-function EnKotuDefans(/* kodlar buraya */) {
+function EnKotuDefans(Finaller, arr) {
   /* kodlar buraya */
+  let finaller = Finaller(arr);
+  let teams = {};
+  finaller.forEach((item) => {
+    if (teams[item["Home Team Initials"]] == undefined) {
+      teams[item["Home Team Initials"]] = item["Away Team Goals"];
+    } else {
+      teams[item["Home Team Initials"]] += item["Away Team Goals"];
+    }
+    if (teams[item["Away Team Initials"]] == undefined) {
+      teams[item["Away Team Initials"]] = item["Home Team Goals"];
+    } else {
+      teams[item["Away Team Initials"]] += item["Home Team Goals"];
+    }
+  });
+  let max = 0;
+  let team = "";
+  for (let key in teams) {
+    if (teams[key] > max) {
+      max = teams[key];
+      team = key;
+    }
+  }
+  let metin = `Dünya kupası finallerinde en çok gol yiyen takım ${max} golle ${team}!.`;
+  return metin;
 }
+//console.log(EnKotuDefans(Finaller, fifaData));
 
 /* Hala vaktiniz varsa, README dosyasında listelenen hedeflerden istediğinizi aşağıdaki boşluğa yazabilirsiniz. */
 
